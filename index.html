@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Generative UI - Orb Animation [pixi.js] + Frosty Elements ❄️</title>
+  <title>GPC</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
@@ -31,6 +31,7 @@ const response = await openai.createCompletion({
   presence_penalty: 0.6,
   stop: [" Human:", " AI:"],
 });
+document.getElementById("changethis").innerHTML = response;
 }
 </script>
 <!-- partial:index.partial.html -->
@@ -52,8 +53,8 @@ const response = await openai.createCompletion({
     <!-- Buttons -->
     <div class="overlay__btns">
 <form action="javascript:;" onsubmit="submit();">
-  <label for="input">Input:</label><br>
-  <input type="text" id="input" name="input" value=""><br>
+  <label for="input">Input:</label>
+  <input type="text" id="input" name="input" value="">
   <button class="overlay__btn overlay__btn--transparent" type="submit">
         <a onclick="submit(input)">
 
@@ -61,7 +62,8 @@ const response = await openai.createCompletion({
         </a>
       </button>
 </form> 
-
+<p id="changethis">
+</p>
 
       <button class="overlay__btn overlay__btn--colors">
         <span>Randomise Colors</span>
