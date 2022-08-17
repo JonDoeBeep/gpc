@@ -13,6 +13,26 @@
 
 </head>
 <body>
+<script>
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey: process.env.api,
+});
+const openai = new OpenAIApi(configuration);
+function submit(input){
+const response = await openai.createCompletion({
+  model: "text-davinci-002",
+  prompt: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\nHuman:"+input+"\nAI:",
+  temperature: 0.9,
+  max_tokens: 150,
+  top_p: 1,
+  frequency_penalty: 0.0,
+  presence_penalty: 0.6,
+  stop: [" Human:", " AI:"],
+});
+}
+</script>
 <!-- partial:index.partial.html -->
 <!-- Canvas -->
 <canvas class="orb-canvas"></canvas>
@@ -22,25 +42,26 @@
   <div class="overlay__inner">
     <!-- Title -->
     <h1 class="overlay__title">
-      Hey, would you like to learn how to create a
-      <span class="text-gradient">generative</span> UI just like this?
+      Welcome to the
+      <span class="text-gradient">open</span> speaker.
     </h1>
     <!-- Description -->
     <p class="overlay__description">
-      In this tutorial we will be creating a generative “orb” animation
-      using pixi.js, picking some lovely random colors and pulling it all
-      together in a nice frosty UI.
-      <strong>We're gonna talk accessibility, too.</strong>
+      Use this to communicate with gpt-3.
     </p>
     <!-- Buttons -->
     <div class="overlay__btns">
+<form action="javascript:;" onsubmit="submit();">
+  <label for="input">Input:</label><br>
+  <input type="text" id="input" name="input" value=""><br>
+  <button class="overlay__btn overlay__btn--transparent" type="submit">
+        <a onclick="submit(input)">
 
-      <button class="overlay__btn overlay__btn--transparent">
-        <a href="https://georgefrancis.dev/writing/create-a-generative-landing-page-and-webgl-powered-background/" target="_blank">
-
-          View Tutorial
+          Submit
         </a>
       </button>
+</form> 
+
 
       <button class="overlay__btn overlay__btn--colors">
         <span>Randomise Colors</span>
